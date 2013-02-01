@@ -23,15 +23,18 @@ using namespace std;
 class poc_mon
 {
 public:
+  static int s_poc_quant;
   poc_mon(string, int);
   int get_health_status();
   void set_health(int);
   string get_name();
-
+  static int get_quant();
 private:
   int m_health;
   string m_name;
 };
+
+  int poc_mon::s_poc_quant = 0;
 
 poc_mon::poc_mon(string name, int health):
 m_health(health)
@@ -42,6 +45,7 @@ m_health(health)
   m_name = name;
   cout << "A new pocket monster is born" << endl;
   cout << "Name: " << m_name << "\t" << "Health: " << m_health << endl;
+  ++s_poc_quant;
 }
 
 int poc_mon::get_health_status()
@@ -67,6 +71,11 @@ void poc_mon::set_health(int health)
   }
 }
 
+int poc_mon::get_quant()
+{
+  return s_poc_quant;
+}
+
 
 int main()
 {
@@ -74,18 +83,26 @@ int main()
 
     poc_mon p1("Xman", 90);
 
+    cout << "Currently, there are " << poc_mon::get_quant() << " monsters" << endl;
+
     poc_mon p2("Yman", 100);
 
+    cout << "Currently, there are " << poc_mon::get_quant() << " monsters" << endl;
+
     poc_mon p3("Zman", 95);
+
+    cout << "Currently, there are " << poc_mon::get_quant() << " monsters" << endl;
 
     cout << "Get health index:" << endl;
 
     cout << "Health for " << p1.get_name() << " is " << p1.get_health_status() << endl;
 
-    p2.get_health_status();
     cout << "Health for " << p2.get_name() << " is " << p2.get_health_status() << endl;
 
+    cout << "Currently, there are " << poc_mon::get_quant() << " monsters" << endl;
+
     cout << "Set health index: " << endl;
+
     p3.set_health(20);
 
     cout << "Health for " << p3.get_name() << " is " << p3.get_health_status() << endl;
@@ -93,6 +110,10 @@ int main()
     p1.set_health(-2);
 
     cout << "Health for " << p1.get_name() << " is " << p1.get_health_status() << endl;
+    // call OK
+    cout << "Currently, there are " << poc_mon::get_quant() << " monsters" << endl;
+    // call return 1
+    cout << "Currently, there are " << poc_mon::get_quant << " monsters" << endl;
 
     return 0;
 }

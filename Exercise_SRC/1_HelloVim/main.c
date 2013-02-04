@@ -19,7 +19,7 @@
 int main()
 {
   printf("Hello, my first VIM C");
-  printf("Test Modification");
+  /*printf("Test Modification");*/
   return 0;
 }
 

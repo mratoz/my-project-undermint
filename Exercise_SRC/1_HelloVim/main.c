@@ -3,7 +3,7 @@
  *
  *       Filename:  main.c
  *
- *    Description:  Hello World of VIM C
+ *    Description:  Hello World of VIM C, add more detail
  *
  *        Version:  1.0
  *        Created:  01/11/2013 07:44:53 AM

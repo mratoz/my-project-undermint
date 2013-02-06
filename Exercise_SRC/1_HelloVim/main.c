@@ -18,8 +18,9 @@
 #include<stdio.h>
 int main()
 {
-  printf("Hello, my first VIM C");
+  printf("Hello, my first VIM C.\n");
   /*printf("Test Modification");*/
+  printf("Commit the change to make sure it's working");
   return 0;
 }
 

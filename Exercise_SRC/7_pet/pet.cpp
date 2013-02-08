@@ -22,19 +22,19 @@ using namespace std;
 class pet
 {
 	public:
-		pet(int health = 0,  int happiness = 0,  string name = "GURU");
+		pet(int health = 10,  int happiness = 6,  string name = "GURU");
 		void talk();
 		void eat(int food_amount);
 		void play(int fun_amount);
 	private:
 		int m_health;
 		int m_happiness;
-    string m_name;
+        string m_name;
 		int get_status() const;
 		void pass_time(int time = 1);
-}
+};
 // constructor for class pet.
-pet::pet(int health,  int happiness):m_health(health), m_happiness(happiness),  m_name(name)
+pet::pet(int health,  int happiness, string name):m_health(health), m_happiness(happiness),  m_name(name)
 {};
 
 // get the status of pet(Higher, better)
@@ -44,17 +44,18 @@ int pet::get_status() const
 }
 
 // simulate the time passing effect on health and happiness
-void pass_time(int time)
+void pet::pass_time(int time)
 {
 	m_health -= time;
 	m_happiness -= time;
 }
 
 // Get the status of pet through talk.
-void talk()
+void pet::talk()
 {
-  cout << "I am " << m_name << ". " << endl;
+  cout << "I am " << m_name << ". " ;
   int status = get_status();
+  cout << "My status is " << status << ". ";
   if(status > 15)
 	{
 		cout << "I feel excellent. " << endl;
@@ -80,7 +81,10 @@ void talk()
 void pet::play(int fun_amount)
 {
 	cout << "I love you, my master" << endl;
-  if(m_happiness < 0)
+  // If m_happiness 0, the passtime would affect the result.So nomatter how many
+	// times you call, if it starts with the value less than 0. 
+	// Happness would always be 0.
+	if(m_happiness < 0)
 	{
 	  m_happiness = 0;
 	}
@@ -105,7 +109,45 @@ int main()
 {
   // poc_mon the monster. lol
 	pet poc_mon;
+  poc_mon.talk();
 
+	int choice;
+	do
+	{
+		// Menu
+        cout << "=======================================" << endl;
+		cout << "Poc_Mon feeding game menu." << endl;
+		cout << "0. Quit" << endl;
+		cout << "1. Listen to your Poc_Mon" << endl;
+		cout << "2. Feed your Poc_Mon" << endl;
+		cout << "3. Play with your Poc_Mon" << endl;
+        cout << "=======================================" << endl;
+		// Hint for choice
+		cout << "Your choice: ";
+		cin >> choice;
+    cout << choice << endl;
+
+		switch(choice)
+		{
+			case 0:
+				cout << "Bye, my master" << endl;
+				break;
+			case 1:
+				poc_mon.talk();
+				break;
+			case 2:
+				poc_mon.eat(4);
+				break;
+			case 3:
+				poc_mon.play(6);
+				break;
+			default:
+				cout << "Your choice is invalid,  please input the right one." << endl;
+		}
+	
+	} while(choice != 0);
+
+	return 0;
 
 }
 
